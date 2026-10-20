@@ -93,7 +93,7 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-w
     <section class="cal" aria-labelledby="cal-t">
       <h2 id="cal-t">내 캘린더에 저장하기</h2>
       <div class="btns">
-        <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%ED%98%9C%EB%AF%BC+%EC%83%9D%EC%9D%BC+%26+%ED%98%9C%EC%A3%BC+%EC%A7%91%EB%93%A4%EC%9D%B4&amp;dates=20261107T130000%2F20261107T130000&amp;ctz=Asia%2FSeoul&amp;location=%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84+%EC%B2%9C%EC%95%88%EC%8B%9C+%EB%8F%99%EB%82%A8%EA%B5%AC+%EB%AA%A9%EC%B2%9C%EC%9D%8D+%EB%8F%99%EB%A6%AC+126&amp;details=%ED%98%9C%EB%AF%BC+%EC%83%9D%EC%9D%BC+%26+%ED%98%9C%EC%A3%BC+%EC%A7%91%EB%93%A4%EC%9D%B4+%C2%B7+11%EC%9B%94+7%EC%9D%BC%28%ED%86%A0%29+%EC%98%A4%ED%9B%84+1%EC%8B%9C" target="_blank" rel="noopener">구글 캘린더</a>
+        <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%ED%98%9C%EB%AF%BC+%EC%83%9D%ED%8C%8C+%2B+%ED%98%9C%EC%A3%BC+%EC%9D%B4%EC%82%AC+%EA%B8%B0%EB%85%90+%EB%A7%8C%EB%82%A8&amp;dates=20261107T130000%2F20261107T130000&amp;ctz=Asia%2FSeoul&amp;location=%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84+%EC%B2%9C%EC%95%88%EC%8B%9C+%EB%8F%99%EB%82%A8%EA%B5%AC+%EB%AA%A9%EC%B2%9C%EC%9D%8D+%EB%8F%99%EB%A6%AC+126&amp;details=%ED%98%9C%EB%AF%BC+%EC%83%9D%ED%8C%8C+%2B+%ED%98%9C%EC%A3%BC+%EC%9D%B4%EC%82%AC+%EA%B8%B0%EB%85%90+%EB%A7%8C%EB%82%A8+%C2%B7+11%EC%9B%94+7%EC%9D%BC%28%ED%86%A0%29+%EC%98%A4%ED%9B%84+1%EC%8B%9C" target="_blank" rel="noopener">구글 캘린더</a>
         <button type="button" class="btn" id="copy">일정 정보 복사</button>
       </div>
       <p class="note">구글 캘린더를 누르면 일정이 채워진 화면이 열려요. 저장만 누르면 끝! <br>아이폰 기본 캘린더를 쓰면 일정 정보를 복사해서 붙여넣어 주세요.</p>
@@ -121,7 +121,7 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-w
 <script>
 (function(){
   var b=document.getElementById("copy"),toast=document.getElementById("toast"),tm;
-  var text="혜민 생일 & 혜주 집들이\n11월 7일(토) 오후 1시\n충청남도 천안시 동남구 목천읍 동리 126";
+  var text="혜민 생파 + 혜주 이사 기념 만남\n11월 7일(토) 오후 1시\n충청남도 천안시 동남구 목천읍 동리 126";
   function show(m){toast.textContent=m;toast.classList.add("on");clearTimeout(tm);tm=setTimeout(function(){toast.classList.remove("on")},1800)}
   function fallback(){var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();
     var ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);show(ok?"복사됐어요":"복사가 안 됐어요. 위 일정을 직접 적어주세요")}
