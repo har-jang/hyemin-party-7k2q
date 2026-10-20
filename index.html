@@ -70,6 +70,7 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-w
 .head span{font-size:13px;font-weight:800;color:var(--count);font-variant-numeric:tabular-nums}
 .names{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .names li{display:flex;align-items:center;justify-content:center;gap:4px;height:36px;border-radius:999px;background:var(--row);font-size:14px;font-weight:700;white-space:nowrap}
+.names li:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - 4px)}
 .names li small{font-size:12px;font-weight:400;color:var(--sub)}
 .dash{border:0;border-top:1px dashed #e3e7f2;margin:0}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:#232323;color:#fff;font-size:13px;font-weight:700;padding:10px 18px;border-radius:999px;transition:.25s;pointer-events:none}
@@ -100,17 +101,18 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-w
     </section>
 
     <section class="ppl">
-      <div class="grp"><div class="head"><h3>참석 예정</h3><span>8명</span></div>
+      <div class="grp"><div class="head"><h3>참석 예정</h3><span>9명</span></div>
         <ul class="names">
           <li>송영훈</li><li>양다예</li>
           <li>윤혜민</li><li>이민렬</li>
           <li>이재영</li><li>이혜주</li>
           <li>장하리</li><li>정주현</li>
+          <li>최인태</li>
         </ul></div>
       <hr class="dash">
-      <div class="grp"><div class="head"><h3 class="b">미정</h3><span>3명</span></div>
+      <div class="grp"><div class="head"><h3 class="b">미정</h3><span>2명</span></div>
         <ul class="names">
-          <li>혜미니 부모님</li><li>최인태</li>
+          <li>혜미니 부모님</li>
         </ul></div>
     </section>
   </article>
