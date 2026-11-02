@@ -43,6 +43,11 @@
 .sheet-btn:active{transform:scale(.97)}
 .sheet-btn:focus-visible{outline:2px solid #8fa4e8;outline-offset:2px}
 .shop-note{margin:0;font-size:11.5px;color:var(--sub);line-height:1.6}
+.to-bottom{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;border:0;background:#232323;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(20,24,40,.25);transition:opacity .25s,transform .25s;z-index:20}
+.to-bottom svg{width:22px;height:22px}
+.to-bottom:active{transform:scale(.94)}
+.to-bottom:focus-visible{outline:2px solid #8fa4e8;outline-offset:3px}
+.to-bottom.off{opacity:0;transform:translateY(12px);pointer-events:none}
 </style>
 </head>
 <body>
@@ -165,6 +170,7 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-w
   </article>
   </div>
 </main>
+<button type="button" class="to-bottom" id="to-bottom" aria-label="맨 아래로 이동"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
@@ -177,6 +183,14 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-w
   b.addEventListener("click",function(){try{navigator.clipboard.writeText(text).then(function(){show("복사됐어요")},fallback)}catch(e){fallback()}});
 })();
 
+
+(function(){
+  var b=document.getElementById("to-bottom");
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  b.addEventListener("click",function(){window.scrollTo({top:document.documentElement.scrollHeight,behavior:reduce?"auto":"smooth"})});
+  function upd(){var d=document.documentElement;b.classList.toggle("off",window.scrollY+window.innerHeight>=d.scrollHeight-40)}
+  window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);upd();
+})();
 </script>
 
 </body>
