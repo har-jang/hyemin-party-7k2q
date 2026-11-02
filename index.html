@@ -11,7 +11,35 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.sched{border:1px solid var(--line);border-radius:14px;padding:20px 18px;display:flex;flex-direction:column;gap:14px}
+.sched h3,.shop h3{margin:0;font-size:17px;font-weight:800;line-height:1.4}
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tl li{display:grid;grid-template-columns:52px 14px 1fr;column-gap:10px;align-items:start;position:relative;padding-bottom:16px}
+.tl li:last-child{padding-bottom:0}
+.tl time{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.4;color:var(--ink)}
+.tl .dot{width:10px;height:10px;border-radius:50%;background:var(--ink);margin:5px 0 0 2px;position:relative;z-index:1}
+.tl li:not(:last-child)::after{content:"";position:absolute;left:68px;top:16px;bottom:-1px;width:2px;background:var(--line)}
+.tl .what{font-size:14.5px;font-weight:700;line-height:1.4}
+.tl .what small{display:block;font-size:12.5px;font-weight:400;color:var(--sub);margin-top:2px}
+.shop{border:1px solid var(--line);border-radius:14px;padding:20px 18px;display:flex;flex-direction:column;gap:12px}
+.shop .head span{font-size:13px;font-weight:800;color:var(--count);font-variant-numeric:tabular-nums}
+.add{display:flex;gap:8px}
+.add input{flex:1;min-width:0;font:inherit;font-size:15px;padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.add input:focus-visible{outline:2px solid #8fa4e8;outline-offset:1px}
+.add button,.shop-tools button{font:inherit;cursor:pointer;border:0;border-radius:12px;font-weight:700}
+.add button{padding:0 16px;background:var(--dark);color:#fff;font-size:14px}
+.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.items li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--row)}
+.items label{flex:1;min-width:0;display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:600;cursor:pointer;word-break:break-all}
+.items input[type=checkbox]{width:20px;height:20px;flex:0 0 20px;accent-color:#232323;margin:0}
+.items li.done label span{text-decoration:line-through;color:#a3a7b5}
+.items .del{border:0;background:none;color:#9aa0b2;font-size:18px;line-height:1;padding:4px 6px;cursor:pointer;border-radius:8px}
+.items .del:hover{background:#ececec}
+.empty{margin:0;padding:14px;border-radius:12px;background:var(--row);text-align:center;font-size:13px;color:var(--sub);line-height:1.6}
+.shop-tools{display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.shop-tools button{padding:9px 14px;background:var(--row);color:var(--ink);font-size:13px}
+.shop-note{margin:0;font-size:11.5px;color:var(--sub);line-height:1.6}
+</style>
 </head>
 <body>
 <title>혜민 생일 · 혜주 집들이</title>
@@ -91,6 +119,15 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-w
       <div class="row"><span class="lbl">대상</span><div class="val"><span class="t">🚮 모임 + @</span></div></div>
     </div>
 
+    <section class="sched" aria-labelledby="sched-t">
+      <h3 id="sched-t">일정</h3>
+      <ol class="tl">
+        <li><time>11:00</time><span class="dot"></span><span class="what">천안 터미널 집합<small>다 같이 장보기</small></span></li>
+        <li><time>12:30</time><span class="dot"></span><span class="what">배밭 도착</span></li>
+        <li><time>13:00</time><span class="dot"></span><span class="what">식사 시작</span></li>
+      </ol>
+    </section>
+
     <section class="cal" aria-labelledby="cal-t">
       <h2 id="cal-t">내 캘린더에 저장하기</h2>
       <div class="btns">
@@ -115,6 +152,21 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-w
           <li>혜미니 부모님</li><li>박찬</li>
         </ul></div>
     </section>
+
+    <section class="shop" aria-labelledby="shop-t">
+      <div class="head"><h3 id="shop-t">장보기 체크리스트</h3><span id="shop-count"></span></div>
+      <form class="add" id="shop-form" autocomplete="off">
+        <input id="shop-input" type="text" maxlength="40" placeholder="예: 삼겹살 2kg, 숯, 종이컵" aria-label="살 것 적기">
+        <button type="submit">추가</button>
+      </form>
+      <ul class="items" id="shop-list"></ul>
+      <p class="empty" id="shop-empty">아직 적은 게 없어요.<br>위 칸에 살 걸 적고 추가를 눌러주세요.</p>
+      <div class="shop-tools">
+        <button type="button" id="shop-copy">목록 복사하기</button>
+        <button type="button" id="shop-clear">체크한 것 지우기</button>
+      </div>
+      <p class="shop-note">적은 목록은 이 폰에만 저장돼요. 다 같이 보려면 "목록 복사하기"를 눌러 단톡에 붙여넣어 주세요.</p>
+    </section>
   </article>
   </div>
 </main>
@@ -128,6 +180,39 @@ body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-w
   function fallback(){var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();
     var ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);show(ok?"복사됐어요":"복사가 안 됐어요. 위 일정을 직접 적어주세요")}
   b.addEventListener("click",function(){try{navigator.clipboard.writeText(text).then(function(){show("복사됐어요")},fallback)}catch(e){fallback()}});
+})();
+
+(function(){
+  var KEY="hm-shop-v1",items=[];
+  try{items=JSON.parse(localStorage.getItem(KEY)||"[]")||[]}catch(e){items=[]}
+  var form=document.getElementById("shop-form"),inp=document.getElementById("shop-input"),list=document.getElementById("shop-list"),
+      empty=document.getElementById("shop-empty"),cnt=document.getElementById("shop-count"),toast=document.getElementById("toast"),tm;
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(items))}catch(e){}}
+  function show(m){toast.textContent=m;toast.classList.add("on");clearTimeout(tm);tm=setTimeout(function(){toast.classList.remove("on")},1800)}
+  function render(){
+    list.innerHTML="";
+    items.forEach(function(it,i){
+      var li=document.createElement("li");if(it.d)li.className="done";
+      var lb=document.createElement("label"),cb=document.createElement("input");cb.type="checkbox";cb.checked=!!it.d;
+      cb.addEventListener("change",function(){it.d=cb.checked;save();render()});
+      var sp=document.createElement("span");sp.textContent=it.t;lb.appendChild(cb);lb.appendChild(sp);
+      var del=document.createElement("button");del.type="button";del.className="del";del.setAttribute("aria-label",it.t+" 지우기");del.textContent="×";
+      del.addEventListener("click",function(){items.splice(i,1);save();render()});
+      li.appendChild(lb);li.appendChild(del);list.appendChild(li);
+    });
+    empty.hidden=items.length>0;
+    var done=items.filter(function(x){return x.d}).length;
+    cnt.textContent=items.length?done+" / "+items.length:"";
+  }
+  form.addEventListener("submit",function(e){e.preventDefault();var v=inp.value.trim();if(!v)return;items.push({t:v,d:false});inp.value="";save();render();inp.focus()});
+  document.getElementById("shop-clear").addEventListener("click",function(){var n=items.length;items=items.filter(function(x){return !x.d});if(items.length===n){show("체크한 게 없어요");return}save();render();show("체크한 걸 지웠어요")});
+  document.getElementById("shop-copy").addEventListener("click",function(){
+    if(!items.length){show("아직 적은 게 없어요");return}
+    var t="[배밭 장보기 리스트]\n"+items.map(function(x){return (x.d?"✅ ":"⬜ ")+x.t}).join("\n");
+    function fb(){var ta=document.createElement("textarea");ta.value=t;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);show(ok?"복사됐어요. 단톡에 붙여넣어 주세요":"복사가 안 됐어요")}
+    try{navigator.clipboard.writeText(t).then(function(){show("복사됐어요. 단톡에 붙여넣어 주세요")},fb)}catch(e){fb()}
+  });
+  render();
 })();
 </script>
 
